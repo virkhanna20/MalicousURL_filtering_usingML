@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Checker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00FEEF, #6495ED, #4169E1, #0F4D92);
+            height: 100vh;
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        #logo-delhi-police, #logo-ipu {
+            height: 103px;
+        }
+
+        #search-bar {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        #search-bar h1 {
+            font-family: Verdana, sans-serif;
+        }
+
+        #search-bar input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 18px;
+        }
+
+        #search-bar input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #bottom-text {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-transform: uppercase;
+            font-family: "Protest Guerrilla", sans-serif;
+            font-size: 40px
+        }
+        .result{
+            text-align: center;
+            justify-content: center;
+        }
+      
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img id="logo-delhi-police" src="static/delhi_police_logo.png" alt="Delhi Police Logo">
+        <h1><u>Malicious URL Tracker</u></h1>
+        <img id="logo-ipu" src="static/ipu.png" alt="IPU Logo">
+    </div>
+
+    <div id="search-bar">
+        <h1>URL Checker</h1>
+        <form action="/predict" method="post">
+            <input type="text" name="url" placeholder="Enter URL in(' ')" >
+            <input type="submit" value="Check">
+            <input type="submit" value="Report" id="report">
+        </form>
+        <br>
+       <p class="replace">Example :- "https://www.abc.com" </p>
+    </div>
+    {% if prediction %}
+    <h2 class="result">Prediction: {{ prediction }}</h2>
+    {% endif %}
+    <div id="bottom-text">
+        TEAM GARUD
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        let report = document.querySelector('#report');
+        let reportAlert = document.querySelector('.replace');
+
+        report.addEventListener('click', () => {
+            
+            reportAlert.innerText = "Your URL is reported";
+        });
+    });
+    </script>
+</body>
+</html>
